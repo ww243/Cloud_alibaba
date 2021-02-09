@@ -1,0 +1,17 @@
+server:
+  port: 9091
+
+spring:
+  application:
+    name: sentinel
+  cloud:
+    nacos:   #注册到nacos中
+      server-addr: 192.168.41.158:8848
+      discovery:
+        server-addr: ${spring.cloud.nacos.server-addr}
+    sentinel:    #让当前系统sentinel核心库与sentinel控制台通信
+      enabled: true
+      transport:    #仪表盘的web端口
+        dashboard: localhost:9191
+        port: 8719    #仪表盘与sentinel核心库通信的tcp端口
+      eager: true      #开启与仪表盘通信立即初始化
